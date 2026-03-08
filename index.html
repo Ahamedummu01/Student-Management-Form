@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T0-D0 List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Student Details -->
+    <div class="container_1">
+        <h1 class="heading">Student Management Form</h1>
+        <form>
+            <table border="1" style="padding: 5px;" class="student_table">
+                <tr>
+                    <td><label for="name" id="name">Name</label></td>
+                    <td><input type="text" id="inputBox_name"></td>
+                </tr>
+                <tr>
+                    <td><label for="age" id="age">Age</label></td>
+                    <td><input type="number" id="inputBox_age"></td>
+                </tr>
+                <!-- Radio button -->
+                <tr>
+                    <td>Gender</td>
+                    <td><input type="radio" name="gender" value="Male" id="male">
+                        <label for="Male">Male</label>
+                        <input type="radio" name="gender" value="Female" id="female">
+                        <label for="Female">Female</label>
+                    </td>
+                </tr>
+                <!-- Drop Down list -->
+                <tr>
+                    <td><label for="Course">Course</label></td>
+                    <td><select id="Course" name="Course">
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="HTML & CSS">HTML & CSS</option>
+                            <option value="Python">Python</option>
+                            <option value="React">React</option>
+                        </select></td>
+                </tr>
+
+                <tr>
+                    <td><label for="email" id="email">Email</label></td>
+                    <td><input type="email" id="inputBox_email"></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2" style="text-align:center;">
+                        <button id="btn" type="button">Save Details</button>
+                    </td>
+                </tr>
+
+
+
+            </table>
+            <br>
+        </form>
+
+
+    </div>
+    <br>
+    <div class="container_2">
+        <h1> Student Details</h1>
+        <form>
+            <table border="2" id="container">
+                <tr>
+                    <td>Name</td>
+                    <td>Age</td>
+                    <td>Gender</td>
+                    <td>Course</td>
+                    <td>Email</td>
+                    <td>Action</td>
+
+
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
+    <script>
+        //selecting all
+
+        var inputBox_name = document.getElementById("inputBox_name")
+        var inputBox_age = document.getElementById("inputBox_age")
+        var inputBox_email = document.getElementById("inputBox_email")
+        var Course = document.getElementById("Course")
+        var btn = document.getElementById("btn")
+        var container = document.getElementById("container")
+
+        btn.addEventListener("click", function () {
+
+            var selectedGender = document.querySelector('input[name="gender"]:checked')
+            var genderValue = selectedGender ? selectedGender.value : ""
+            var tr = document.createElement("tr")
+
+            tr.innerHTML =
+                "<td>" + inputBox_name.value + "</td>" +
+                "<td>" + inputBox_age.value + "</td>" +
+                "<td>" + genderValue + "</td>" +
+                "<td>" + Course.value + "</td>" +
+                "<td>" + inputBox_email.value + "</td>" + '<button type="button" onclick="deleteitem(event)">Delete</button>'
+            container.append(tr)
+
+            inputBox_name.value = ""
+            inputBox_age.value = ""
+            inputBox_email.value = ""
+
+            if (selectedGender) {
+                selectedGender.checked = false
+            }
+
+        })
+
+        function deleteitem(event) {
+            event.target.parentElement.remove()
+        }
+
+    </script>
+
+</body>
+
+</html>
